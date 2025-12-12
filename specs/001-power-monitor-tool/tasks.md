@@ -63,19 +63,19 @@ Per plan.md structure:
 
 ### Implementation for User Story 1
 
-- [ ] T016 [US1] Implement time interval generation function in data-generator/src/generator.py (10-minute intervals over 14 days)
-- [ ] T017 [US1] Implement baseline power consumption generator in data-generator/src/generator.py (100-500 watts with normal variations)
-- [ ] T018 [US1] Implement weekday afternoon spike logic in data-generator/src/generator.py (1800-2200 watts for children's rooms, 3-4pm Mon-Fri only)
-- [ ] T019 [US1] Implement amperage calculation and breaker_tripped flag logic in data-generator/src/generator.py (amperage = wattage/120, tripped when > 15A)
-- [ ] T020 [US1] Implement main data generation orchestration in data-generator/src/generator.py (iterate rooms, generate full 14-day dataset per room)
-- [ ] T021 [US1] Create command-line interface in data-generator/src/generator.py with --output argument for CSV file path
-- [ ] T022 [US1] Integrate CSV writer to output data in format per contracts/csv-schema.md with proper headers and data types
-- [ ] T023 [US1] Add timezone handling for timestamps (use EST/EDT per csv-schema.md)
-- [ ] T024 [P] [US1] Create unit tests in data-generator/tests/test_generator.py for time interval generation
-- [ ] T025 [P] [US1] Create unit tests in data-generator/tests/test_generator.py for baseline power patterns
-- [ ] T026 [P] [US1] Create unit tests in data-generator/tests/test_generator.py for weekday spike detection
-- [ ] T027 [US1] Create CSV format validation tests in data-generator/tests/test_csv_writer.py verifying RFC 4180 compliance
-- [ ] T028 [US1] Create integration test in data-generator/tests/test_integration.py verifying full 14-day generation produces correct record count
+- [X] T016 [US1] Implement time interval generation function in data-generator/src/generator.py (10-minute intervals over 14 days)
+- [X] T017 [US1] Implement baseline power consumption generator in data-generator/src/generator.py (100-500 watts with normal variations)
+- [X] T018 [US1] Implement weekday afternoon spike logic in data-generator/src/generator.py (1800-2200 watts for children's rooms, 3-4pm Mon-Fri only)
+- [X] T019 [US1] Implement amperage calculation and breaker_tripped flag logic in data-generator/src/generator.py (amperage = wattage/120, tripped when > 15A)
+- [X] T020 [US1] Implement main data generation orchestration in data-generator/src/generator.py (iterate rooms, generate full 14-day dataset per room)
+- [X] T021 [US1] Create command-line interface in data-generator/src/generator.py with --output argument for CSV file path
+- [X] T022 [US1] Integrate CSV writer to output data in format per contracts/csv-schema.md with proper headers and data types
+- [X] T023 [US1] Add timezone handling for timestamps (use EST/EDT per csv-schema.md)
+- [X] T024 [P] [US1] Create unit tests in data-generator/tests/test_generator.py for time interval generation
+- [X] T025 [P] [US1] Create unit tests in data-generator/tests/test_generator.py for baseline power patterns
+- [X] T026 [P] [US1] Create unit tests in data-generator/tests/test_generator.py for weekday spike detection
+- [X] T027 [US1] Create CSV format validation tests in data-generator/tests/test_csv_writer.py verifying RFC 4180 compliance
+- [X] T028 [US1] Create integration test in data-generator/tests/test_integration.py verifying full 14-day generation produces correct record count
 
 **Checkpoint**: At this point, User Story 1 should be fully functional - can generate complete test CSV file independently
 

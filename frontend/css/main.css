@@ -521,3 +521,83 @@ input[type="file"] {
     align-items: stretch;
   }
 }
+
+/* Export Section Styles */
+.export-controls {
+  padding: 1rem;
+}
+
+.export-description {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+}
+
+.export-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn-export {
+  background: var(--primary-color);
+  color: white;
+  padding: 1rem 1.5rem;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.btn-export:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.btn-export:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.btn-export:disabled {
+  background: var(--secondary-color);
+  cursor: not-allowed;
+  opacity: 0.5;
+  transform: none;
+}
+
+.export-info {
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+.export-info p {
+  margin: 0.5rem 0;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.export-info strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Responsive export buttons */
+@media (min-width: 768px) {
+  .export-buttons {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .btn-export {
+    flex: 1;
+  }
+}

@@ -164,12 +164,12 @@ Per plan.md structure:
 
 **Purpose**: Enable users to export findings per FR-021
 
-- [ ] T069 [P] Add export buttons to frontend/index.html (PNG, PDF, CSV export)
-- [ ] T070 [P] Create exportManager module in frontend/js/exportManager.js
-- [ ] T071 [P] Implement PNG screenshot export in frontend/js/exportManager.js using Highcharts built-in export
-- [ ] T072 [P] Implement PDF report generation in frontend/js/exportManager.js with summary stats and chart image
-- [ ] T073 [P] Implement filtered CSV data export in frontend/js/exportManager.js (export currently displayed subset)
-- [ ] T074 [P] Style export controls in frontend/css/main.css
+- [X] T069 [P] Add export buttons to frontend/index.html (PNG, PDF, CSV export)
+- [X] T070 [P] Create exportManager module in frontend/js/exportManager.js
+- [X] T071 [P] Implement PNG screenshot export in frontend/js/exportManager.js using Highcharts built-in export
+- [X] T072 [P] Implement PDF report generation in frontend/js/exportManager.js with summary stats and chart image
+- [X] T073 [P] Implement filtered CSV data export in frontend/js/exportManager.js (export currently displayed subset)
+- [X] T074 [P] Style export controls in frontend/css/main.css
 
 ---
 

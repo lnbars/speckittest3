@@ -190,9 +190,29 @@
         </section>
 
         <section id="exportSection" style="display: none;">
-            <h2>Export</h2>
+            <h2>💾 Export Data</h2>
             <div class="export-controls">
-                <!-- Export controls will be added in Phase 7 -->
+                <p class="export-description">Export your analysis results in various formats:</p>
+                
+                <div class="export-buttons">
+                    <button id="exportPNG" class="btn btn-export" aria-label="Export chart as PNG image">
+                        📸 Export Chart as PNG
+                    </button>
+                    
+                    <button id="exportPDF" class="btn btn-export" aria-label="Export report as PDF">
+                        📄 Export Report as PDF
+                    </button>
+                    
+                    <button id="exportCSV" class="btn btn-export" aria-label="Export filtered data as CSV">
+                        📊 Export Data as CSV
+                    </button>
+                </div>
+                
+                <div class="export-info">
+                    <p><strong>PNG:</strong> High-resolution chart image suitable for presentations</p>
+                    <p><strong>PDF:</strong> Complete report with summary statistics and chart</p>
+                    <p><strong>CSV:</strong> Filtered dataset for further analysis in other tools</p>
+                </div>
             </div>
         </section>
     </main>

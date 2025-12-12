@@ -112,5 +112,5 @@ def is_weekday_afternoon_spike_time(dt, room_type: str) -> bool:
     
     # Check if within spike time window (3:00-3:59 PM)
     hour = dt.hour
-    return (DATA_GENERATION_CONFIG["spike_start_hour"] <= hour < 
-            DATA_GENERATION_CONFIG["spike_end_hour"])
+    return (DATA_GENERATION_CONFIG["spike_start_hour"] <= hour
+            < DATA_GENERATION_CONFIG["spike_end_hour"])

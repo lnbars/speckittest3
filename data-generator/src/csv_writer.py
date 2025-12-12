@@ -5,7 +5,7 @@ Writes power monitoring data to CSV files per contracts/csv-schema.md specificat
 """
 
 import csv
-from typing import List, Dict, Any, TextIO
+from typing import List, Dict, Any  # , TextIO
 from pathlib import Path
 
 

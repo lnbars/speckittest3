@@ -10,7 +10,11 @@ exclude =
     dist,
     *.egg-info
 ignore = 
-    E203,  # whitespace before ':'
-    W503,  # line break before binary operator
+    # whitespace before ':'
+    E203,
+    # blank line contains whitespace
+    W293,
+    # line break before binary operator
+    W503,
 per-file-ignores =
     __init__.py:F401

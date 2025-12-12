@@ -64,9 +64,108 @@
         </section>
 
         <section id="filtersSection" style="display: none;">
-            <h2>Filters</h2>
+            <h2>🔍 Filters</h2>
             <div class="filter-panel">
-                <!-- Filter controls will be added in Phase 6 (User Story 4) -->
+                <div class="filter-header">
+                    <span id="filterStatus" class="filter-status">No filters active</span>
+                    <button id="resetFilters" class="btn btn-secondary">Reset All Filters</button>
+                </div>
+                
+                <div class="filter-grid">
+                    <!-- Date Range Filter -->
+                    <div class="filter-group">
+                        <label class="filter-label">📅 Date Range</label>
+                        <div class="date-inputs">
+                            <input 
+                                type="date" 
+                                id="startDate" 
+                                class="filter-input"
+                                aria-label="Start date"
+                            >
+                            <span class="date-separator">to</span>
+                            <input 
+                                type="date" 
+                                id="endDate" 
+                                class="filter-input"
+                                aria-label="End date"
+                            >
+                        </div>
+                    </div>
+                    
+                    <!-- Time of Day Filter -->
+                    <div class="filter-group">
+                        <label class="filter-label">🕐 Time of Day</label>
+                        <div class="time-inputs">
+                            <select id="startHour" class="filter-select" aria-label="Start hour">
+                                <option value="">Any time</option>
+                                <option value="0">12 AM</option>
+                                <option value="1">1 AM</option>
+                                <option value="2">2 AM</option>
+                                <option value="3">3 AM</option>
+                                <option value="4">4 AM</option>
+                                <option value="5">5 AM</option>
+                                <option value="6">6 AM</option>
+                                <option value="7">7 AM</option>
+                                <option value="8">8 AM</option>
+                                <option value="9">9 AM</option>
+                                <option value="10">10 AM</option>
+                                <option value="11">11 AM</option>
+                                <option value="12">12 PM</option>
+                                <option value="13">1 PM</option>
+                                <option value="14">2 PM</option>
+                                <option value="15">3 PM</option>
+                                <option value="16">4 PM</option>
+                                <option value="17">5 PM</option>
+                                <option value="18">6 PM</option>
+                                <option value="19">7 PM</option>
+                                <option value="20">8 PM</option>
+                                <option value="21">9 PM</option>
+                                <option value="22">10 PM</option>
+                                <option value="23">11 PM</option>
+                            </select>
+                            <span class="time-separator">to</span>
+                            <select id="endHour" class="filter-select" aria-label="End hour">
+                                <option value="">Any time</option>
+                                <option value="1">1 AM</option>
+                                <option value="2">2 AM</option>
+                                <option value="3">3 AM</option>
+                                <option value="4">4 AM</option>
+                                <option value="5">5 AM</option>
+                                <option value="6">6 AM</option>
+                                <option value="7">7 AM</option>
+                                <option value="8">8 AM</option>
+                                <option value="9">9 AM</option>
+                                <option value="10">10 AM</option>
+                                <option value="11">11 AM</option>
+                                <option value="12">12 PM</option>
+                                <option value="13">1 PM</option>
+                                <option value="14">2 PM</option>
+                                <option value="15">3 PM</option>
+                                <option value="16">4 PM</option>
+                                <option value="17">5 PM</option>
+                                <option value="18">6 PM</option>
+                                <option value="19">7 PM</option>
+                                <option value="20">8 PM</option>
+                                <option value="21">9 PM</option>
+                                <option value="22">10 PM</option>
+                                <option value="23">11 PM</option>
+                                <option value="24">12 AM (next day)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Room Filter -->
+                    <div class="filter-group">
+                        <label class="filter-label">🏠 Rooms</label>
+                        <div id="roomCheckboxes" class="room-checkboxes">
+                            <!-- Room checkboxes will be populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-actions">
+                    <button id="applyFilters" class="btn btn-primary">Apply Filters</button>
+                </div>
             </div>
         </section>
 

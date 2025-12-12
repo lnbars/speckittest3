@@ -9,6 +9,7 @@
 import { eventBus, EVENTS } from './core/eventBus.js';
 import { DataLoader } from './dataLoader.js';
 import { ChartManager } from './chartManager.js';
+import { FilterManager } from './filterManager.js';
 
 /**
  * Initialize the application.
@@ -19,6 +20,7 @@ function init() {
   // Initialize modules
   const dataLoader = new DataLoader();
   const chartManager = new ChartManager();
+  const filterManager = new FilterManager();
   
   // Connect file input to event bus
   const fileInput = document.getElementById('csvFileInput');

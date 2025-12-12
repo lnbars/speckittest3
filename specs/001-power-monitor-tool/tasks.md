@@ -26,13 +26,13 @@ Per plan.md structure:
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create project directory structure (data-generator/, frontend/, docs/)
-- [ ] T002 [P] Initialize Python project structure in data-generator/ with src/ and tests/ subdirectories
-- [ ] T003 [P] Initialize frontend structure in frontend/ with index.html, css/, js/, lib/ subdirectories
-- [ ] T004 [P] Create requirements.txt in data-generator/ (pytest for testing)
-- [ ] T005 [P] Create .gitignore for Python cache files and generated CSV data
-- [ ] T006 [P] Create README.md in data-generator/ with usage instructions
-- [ ] T007 [P] Create README.md in frontend/ with setup and usage instructions
+- [X] T001 Create project directory structure (data-generator/, frontend/, docs/)
+- [X] T002 [P] Initialize Python project structure in data-generator/ with src/ and tests/ subdirectories
+- [X] T003 [P] Initialize frontend structure in frontend/ with index.html, css/, js/, lib/ subdirectories
+- [X] T004 [P] Create requirements.txt in data-generator/ (pytest for testing)
+- [X] T005 [P] Create .gitignore for Python cache files and generated CSV data
+- [X] T006 [P] Create README.md in data-generator/ with usage instructions
+- [X] T007 [P] Create README.md in frontend/ with setup and usage instructions
 
 ---
 

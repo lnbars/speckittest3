@@ -1,0 +1,11 @@
+# Power Monitoring Data Generator - Python Dependencies
+
+# Testing framework
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Standard library modules used (no installation needed):
+# - csv: CSV file writing (RFC 4180)
+# - datetime: Timestamp generation
+# - random: Power consumption variation
+# - argparse: Command-line interface

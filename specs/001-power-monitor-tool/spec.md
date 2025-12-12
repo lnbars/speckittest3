@@ -5,6 +5,16 @@
 **Status**: Draft  
 **Input**: User description: "I am an electrician that is investigating why a breaker keeps blowing everyday. I am running diagnostics on how many watts are being used in each room in the house to try to track down the issue. Each room has one 120v 15 amp circuit. I would like to create a csv with timeseries data like time, persons room (Parents room, Sons room, daughters room, kitchen etc. ), wattage used and any other columns that make sense for the data type. There should be a record for every 10 minutes for two weeks of time. The data should show spikes around 3-4pm but only on weekdays. I want the data to show that the breakers blow when the kids get off school and start using a ton of electronics in their rooms. I would then like to create a website to look at the time series data. Use best practices for the UI in regards to look and feel. It should look like a website a data analyst would want to use. There does not ned to be authentication or authorization as this will be a one-off tool to look at this specific data. I want to use the CSV test data from above as the source of the data."
 
+## Clarifications
+
+### Session 2025-12-12
+
+- Q: How does the website access the CSV file - user upload via file input dialog, drag-and-drop, hardcoded path, or URL parameter? → A: File input dialog - User clicks a button to open file picker and selects CSV from local filesystem
+- Q: What data validation rules should be applied - standard electrical limits, minimal validation, strict circuit limits, or no validation? → A: Minimal validation - Only reject negative wattage and null/missing required fields, accept all other values
+- Q: What export capabilities should be provided - browser native only, screenshot button, print optimized, or full export suite? → A: Full export suite - Built-in screenshot, PDF report generation, and filtered CSV data export buttons
+- Q: How should errors and warnings be displayed - inline contextual messages, modal dialogs, toast notifications, or status bar panel? → A: Inline contextual messages - Errors/warnings appear directly in relevant UI areas with icons and brief text
+- Q: How should rooms be visually differentiated in charts - distinct categorical palette, monochrome with patterns, gradient spectrum, or user customizable? → A: Distinct categorical palette - Each room gets unique, high-contrast, colorblind-safe color consistently used across all charts
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Generate Test Data (Priority: P1)
@@ -78,11 +88,11 @@ As a data analyst reviewing power consumption, I need to filter data by date ran
 
 ### Edge Cases
 
-- What happens when the CSV file is empty or missing? System should display an error message indicating data file not found.
-- What happens when CSV data contains gaps (missing 10-minute intervals)? System should display data as-is but warn user about data quality issues.
+- What happens when the CSV file is empty or missing? System should display an inline error message with icon directly in the chart area stating "No data loaded. Please select a CSV file to begin analysis."
+- What happens when CSV data contains gaps (missing 10-minute intervals)? System should display data as-is with an inline warning banner above the chart stating "Data quality issue: X missing time intervals detected" with details icon.
 - What happens when a room has zero wattage for extended periods? Charts should display the flatline appropriately without errors.
 - What happens when viewing the website on different screen sizes? UI should be responsive and usable on tablet and desktop screens (mobile is not required for this one-off analysis tool).
-- What happens if CSV data contains invalid values (negative wattage, voltage != 120v)? System should either filter out invalid records or display them with warning indicators.
+- What happens if CSV data contains invalid values (negative wattage, null/missing required fields)? System should display an inline warning message stating "Y invalid records excluded from visualization" and show warning icons next to affected data points in the chart with tooltip explanations.
 - What happens when multiple rooms trip breakers simultaneously? Visual indicators should clearly show all affected rooms.
 
 ## Requirements *(mandatory)*
@@ -101,7 +111,7 @@ As a data analyst reviewing power consumption, I need to filter data by date ran
 
 #### Data Visualization Website
 
-- **FR-008**: Website MUST load and parse CSV data from a file source
+- **FR-008**: Website MUST provide a file input control (button triggering file picker dialog) allowing users to select and load CSV data from their local filesystem
 - **FR-009**: Website MUST display interactive time series line charts showing wattage over time for each room
 - **FR-010**: Website MUST allow users to hover over chart data points to view exact values in tooltips (timestamp, wattage, amperage, room)
 - **FR-011**: Website MUST visually mark breaker trip events (when breaker_tripped = true) with distinct indicators on the timeline
@@ -111,9 +121,11 @@ As a data analyst reviewing power consumption, I need to filter data by date ran
 - **FR-015**: Website MUST include a time-of-day filter to focus on specific hours (e.g., only 3-4pm across all days)
 - **FR-016**: Website MUST display a summary panel showing total breaker trip count by room
 - **FR-017**: Website MUST provide a comparison view that separates or overlays weekday vs weekend data
-- **FR-018**: Website MUST use a professional data analysis UI aesthetic with clear typography, appropriate color schemes, and intuitive controls
+- **FR-018**: Website MUST use a professional data analysis UI aesthetic with clear typography, intuitive controls, and a distinct categorical color palette that assigns each room a unique, high-contrast, colorblind-safe color used consistently across all charts and legends
 - **FR-019**: Website MUST be functional without requiring user authentication or authorization
 - **FR-020**: Website MUST be responsive and usable on desktop and tablet screen sizes (minimum 768px width)
+- **FR-021**: Website MUST provide export functionality including: (a) download current chart visualization as PNG image file, (b) generate and download PDF report containing summary statistics and visualizations, and (c) export currently filtered/displayed data subset as CSV file
+- **FR-022**: Website MUST display errors and warnings using inline contextual messages that appear directly in the relevant UI area (e.g., chart area, data panel) with appropriate icons and brief descriptive text, without using modal dialogs or toast notifications
 
 ### Key Entities
 
@@ -133,7 +145,7 @@ As a data analyst reviewing power consumption, I need to filter data by date ran
 - **SC-004**: Electrician can identify the problematic pattern (weekday after-school surge in children's rooms) within 5 minutes of viewing the visualization
 - **SC-005**: Website loads and renders complete dataset (10,000+ records across all rooms) within 3 seconds on standard desktop hardware
 - **SC-006**: All chart interactions (zoom, pan, filter, toggle rooms) respond within 200 milliseconds
-- **SC-007**: User can export or document findings from the analysis (via screenshot, print, or data export) for reporting purposes
+- **SC-007**: User can export findings using built-in export buttons: download chart visualization as PNG image, generate PDF report with summary statistics and charts, and export currently filtered data subset as CSV file
 - **SC-008**: Website displays without errors on Chrome, Firefox, and Edge browsers (latest versions)
 
 ## Assumptions

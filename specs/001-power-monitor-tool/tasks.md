@@ -42,14 +42,14 @@ Per plan.md structure:
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T008 [P] Create Room model class in data-generator/src/models.py with fields per data-model.md
-- [ ] T009 [P] Create PowerReading model class in data-generator/src/models.py with validation per data-model.md
-- [ ] T010 [P] Create BreakerEvent model class in data-generator/src/models.py for event tracking
-- [ ] T011 [P] Create configuration module in data-generator/src/config.py defining standard rooms (Parents room, Sons room, Daughters room, Kitchen, Living room)
-- [ ] T012 Create CSV writer utility in data-generator/src/csv_writer.py implementing RFC 4180 format per contracts/csv-schema.md
-- [ ] T013 Setup event bus pattern in frontend/js/core/eventBus.js per research.md architecture
-- [ ] T014 [P] Add Highcharts library to frontend/lib/ or configure CDN link in frontend/index.html
-- [ ] T015 [P] Add PapaParse library to frontend/lib/ or configure CDN link in frontend/index.html
+- [X] T008 [P] Create Room model class in data-generator/src/models.py with fields per data-model.md
+- [X] T009 [P] Create PowerReading model class in data-generator/src/models.py with validation per data-model.md
+- [X] T010 [P] Create BreakerEvent model class in data-generator/src/models.py for event tracking
+- [X] T011 [P] Create configuration module in data-generator/src/config.py defining standard rooms (Parents room, Sons room, Daughters room, Kitchen, Living room)
+- [X] T012 Create CSV writer utility in data-generator/src/csv_writer.py implementing RFC 4180 format per contracts/csv-schema.md
+- [X] T013 Setup event bus pattern in frontend/js/core/eventBus.js per research.md architecture
+- [X] T014 [P] Add Highcharts library to frontend/lib/ or configure CDN link in frontend/index.html
+- [X] T015 [P] Add PapaParse library to frontend/lib/ or configure CDN link in frontend/index.html
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 

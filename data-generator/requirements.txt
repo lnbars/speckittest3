@@ -1,6 +1,7 @@
 # Power Monitoring Data Generator - Python Dependencies
 
 # Testing framework
+flake8>=7.3.0
 pytest>=7.4.0
 pytest-cov>=4.1.0
 

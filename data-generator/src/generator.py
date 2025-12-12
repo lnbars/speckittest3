@@ -232,7 +232,7 @@ def print_summary(csv_rows: List[Dict[str, Any]], filepath: str, file_size_kb: f
     # Count breaker trips
     trip_counts = count_breaker_trips(csv_rows)
     
-    print("\n✓ Data generation complete!\n")
+    print("\nData generation complete!\n")
     print("Room Statistics:")
     print("-" * 60)
     
@@ -241,9 +241,9 @@ def print_summary(csv_rows: List[Dict[str, Any]], filepath: str, file_size_kb: f
         trip_count = trip_counts.get(room_name, 0)
         
         if trip_count > 0:
-            print(f"  ✓ {room_name}: {record_count:,} records ({trip_count} breaker trips)")
+            print(f"  * {room_name}: {record_count:,} records ({trip_count} breaker trips)")
         else:
-            print(f"  ✓ {room_name}: {record_count:,} records")
+            print(f"  * {room_name}: {record_count:,} records")
     
     print("-" * 60)
     print(f"\nTotal: {len(csv_rows):,} records written to {filepath}")
@@ -311,13 +311,13 @@ Data Characteristics:
     # Set to midnight for clean start time
     start_date = start_date.replace(hour=0, minute=0, second=0, microsecond=0)
     
-    print(f"\n⚡ Power Monitoring Data Generator")
-    print(f"━" * 60)
+    print(f"\nPower Monitoring Data Generator")
+    print(f"-" * 60)
     print(f"Generating {DATA_GENERATION_CONFIG['total_days']} days of power data...")
     print(f"Start date: {start_date.strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"Interval: {DATA_GENERATION_CONFIG['interval_minutes']} minutes")
     print(f"Rooms: {len(STANDARD_ROOMS)}")
-    print(f"━" * 60)
+    print(f"-" * 60)
     
     # Create Room entities
     rooms = [Room(**room_config) for room_config in get_room_configs()]

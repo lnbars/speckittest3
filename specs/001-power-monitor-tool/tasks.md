@@ -178,18 +178,18 @@ Per plan.md structure:
 **Purpose**: Improvements that affect multiple user stories
 
 - [X] T075 [P] Create utility functions in frontend/js/utils.js (date formatting, validation helpers)
-- [ ] T076 [P] Add docstrings to all Python functions in data-generator/src/ (Google style per plan.md)
-- [ ] T077 [P] Add JSDoc comments to frontend JavaScript modules in frontend/js/
-- [ ] T078 [P] Test website in Chrome, Firefox, and Edge latest versions (per SC-008)
-- [ ] T079 Verify performance targets: CSV generation < 10 seconds, website load < 3 seconds, interactions < 200ms
-- [ ] T080 [P] Create manual test plan in frontend/tests/manual-test-plan.md covering all acceptance scenarios
-- [ ] T081 [P] Update docs/data-model.md if any entity changes were made during implementation
-- [ ] T082 [P] Verify quickstart.md instructions are accurate and complete
-- [ ] T083 Code cleanup: Remove debug console.logs, unused imports, commented code
-- [ ] T084 [P] Add Python linting configuration (.pylintrc or setup.cfg with flake8)
-- [ ] T085 [P] Add JavaScript linting configuration (.eslintrc.json)
-- [ ] T086 Run pylint/flake8 on Python code and fix issues
-- [ ] T087 Run ESLint on JavaScript code and fix issues
+- [X] T076 [P] Add docstrings to all Python functions in data-generator/src/ (Google style per plan.md)
+- [X] T077 [P] Add JSDoc comments to frontend JavaScript modules in frontend/js/
+- [X] T078 [P] Test website in Chrome, Firefox, and Edge latest versions (per SC-008)
+- [X] T079 Verify performance targets: CSV generation < 10 seconds, website load < 3 seconds, interactions < 200ms
+- [X] T080 [P] Create manual test plan in frontend/tests/manual-test-plan.md covering all acceptance scenarios
+- [X] T081 [P] Update docs/data-model.md if any entity changes were made during implementation
+- [X] T082 [P] Verify quickstart.md instructions are accurate and complete
+- [X] T083 Code cleanup: Remove debug console.logs, unused imports, commented code
+- [X] T084 [P] Add Python linting configuration (.pylintrc or setup.cfg with flake8)
+- [X] T085 [P] Add JavaScript linting configuration (.eslintrc.json)
+- [X] T086 Run pylint/flake8 on Python code and fix issues
+- [X] T087 Run ESLint on JavaScript code and fix issues
 
 ---
 

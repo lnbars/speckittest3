@@ -201,6 +201,29 @@ input[type="file"] {
   }
 }
 
+/* Info box */
+.info-box {
+  padding: 1rem;
+  background: #f0f9ff;
+  border-left: 4px solid var(--primary-color);
+  border-radius: 6px;
+  font-size: 0.875rem;
+}
+
+.info-box p {
+  margin: 0.5rem 0;
+}
+
+.info-box a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.info-box a:hover {
+  text-decoration: underline;
+}
+
 /* Utility classes */
 .hidden {
   display: none !important;

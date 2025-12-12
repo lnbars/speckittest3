@@ -89,27 +89,27 @@ Per plan.md structure:
 
 ### Implementation for User Story 2
 
-- [ ] T029 [US2] Create HTML structure in frontend/index.html with file input control, chart container, and basic layout
-- [ ] T030 [P] [US2] Create base CSS styles in frontend/css/main.css for professional data analysis UI (typography, layout, color scheme)
-- [ ] T031 [P] [US2] Create chart-specific CSS in frontend/css/charts.css for Highcharts styling
-- [ ] T032 [US2] Implement file input handler in frontend/js/dataLoader.js to handle CSV file selection via file picker dialog
-- [ ] T033 [US2] Implement CSV parsing in frontend/js/dataLoader.js using PapaParse with worker mode per research.md
-- [ ] T034 [US2] Implement data validation in frontend/js/dataLoader.js (reject negative wattage, null required fields per FR-022)
-- [ ] T035 [US2] Emit 'data:loaded' event from frontend/js/dataLoader.js with parsed and validated data
-- [ ] T036 [US2] Create Highcharts configuration in frontend/js/chartManager.js with Boost module enabled per research.md
-- [ ] T037 [US2] Implement performance optimizations in frontend/js/chartManager.js (disable markers, turboThreshold: 5000, data grouping)
-- [ ] T038 [US2] Implement Paul Tol's Bright colorblind-safe palette in frontend/js/chartManager.js for room differentiation
-- [ ] T039 [US2] Implement time series rendering in frontend/js/chartManager.js (one series per room, wattage vs timestamp)
-- [ ] T040 [US2] Implement tooltip configuration in frontend/js/chartManager.js showing timestamp, room, wattage, amperage
-- [ ] T041 [US2] Implement breaker trip visual indicators in frontend/js/chartManager.js (red markers when breaker_tripped = true)
-- [ ] T042 [US2] Implement zoom and pan functionality in frontend/js/chartManager.js (zoomType: 'x', panning enabled)
-- [ ] T043 [US2] Implement room visibility toggle in frontend/js/chartManager.js (legend click to show/hide series)
-- [ ] T044 [US2] Create summary panel in frontend/index.html displaying total breaker trip count by room
-- [ ] T045 [US2] Implement summary statistics calculation in frontend/js/chartManager.js and update summary panel
-- [ ] T046 [US2] Create application initialization in frontend/js/main.js connecting all modules via event bus
-- [ ] T047 [US2] Add inline error display for CSV load failures in frontend/js/dataLoader.js (contextual messages per FR-022)
-- [ ] T048 [US2] Add inline warning display for data quality issues in frontend/js/dataLoader.js (missing intervals, invalid values)
-- [ ] T049 [US2] Implement responsive CSS breakpoints in frontend/css/main.css for tablet (768px+) and desktop
+- [X] T029 [US2] Create HTML structure in frontend/index.html with file input control, chart container, and basic layout
+- [X] T030 [P] [US2] Create base CSS styles in frontend/css/main.css for professional data analysis UI (typography, layout, color scheme)
+- [X] T031 [P] [US2] Create chart-specific CSS in frontend/css/charts.css for Highcharts styling
+- [X] T032 [US2] Implement file input handler in frontend/js/dataLoader.js to handle CSV file selection via file picker dialog
+- [X] T033 [US2] Implement CSV parsing in frontend/js/dataLoader.js using PapaParse with worker mode per research.md
+- [X] T034 [US2] Implement data validation in frontend/js/dataLoader.js (reject negative wattage, null required fields per FR-022)
+- [X] T035 [US2] Emit 'data:loaded' event from frontend/js/dataLoader.js with parsed and validated data
+- [X] T036 [US2] Create Highcharts configuration in frontend/js/chartManager.js with Boost module enabled per research.md
+- [X] T037 [US2] Implement performance optimizations in frontend/js/chartManager.js (disable markers, turboThreshold: 5000, data grouping)
+- [X] T038 [US2] Implement Paul Tol's Bright colorblind-safe palette in frontend/js/chartManager.js for room differentiation
+- [X] T039 [US2] Implement time series rendering in frontend/js/chartManager.js (one series per room, wattage vs timestamp)
+- [X] T040 [US2] Implement tooltip configuration in frontend/js/chartManager.js showing timestamp, room, wattage, amperage
+- [X] T041 [US2] Implement breaker trip visual indicators in frontend/js/chartManager.js (red markers when breaker_tripped = true)
+- [X] T042 [US2] Implement zoom and pan functionality in frontend/js/chartManager.js (zoomType: 'x', panning enabled)
+- [X] T043 [US2] Implement room visibility toggle in frontend/js/chartManager.js (legend click to show/hide series)
+- [X] T044 [US2] Create summary panel in frontend/index.html displaying total breaker trip count by room
+- [X] T045 [US2] Implement summary statistics calculation in frontend/js/chartManager.js and update summary panel
+- [X] T046 [US2] Create application initialization in frontend/js/main.js connecting all modules via event bus
+- [X] T047 [US2] Add inline error display for CSV load failures in frontend/js/dataLoader.js (contextual messages per FR-022)
+- [X] T048 [US2] Add inline warning display for data quality issues in frontend/js/dataLoader.js (missing intervals, invalid values)
+- [X] T049 [US2] Implement responsive CSS breakpoints in frontend/css/main.css for tablet (768px+) and desktop
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work - can generate data AND visualize it independently
 

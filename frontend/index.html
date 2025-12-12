@@ -36,23 +36,28 @@
                     accept=".csv,text/csv"
                     aria-label="Select CSV file to load"
                 >
-                <label for="csvFileInput" class="btn btn-primary">Load CSV File</label>
+                <label for="csvFileInput" class="btn btn-primary">📁 Load CSV File</label>
                 <span id="fileStatus" class="status-text"></span>
             </div>
             
             <div id="errorDisplay" class="error-message" role="alert" style="display: none;"></div>
             <div id="warningDisplay" class="warning-message" role="alert" style="display: none;"></div>
+            
+            <div class="info-box" style="margin-top: 1rem;">
+                <p><strong>Sample Data Available:</strong> You can test with the included <a href="sample-data/sample-power-data.csv" download>sample-power-data.csv</a> file (10,080 records, 524 KB)</p>
+                <p><strong>Expected Format:</strong> CSV with columns: timestamp, room_name, wattage, amperage, voltage, breaker_tripped</p>
+            </div>
         </section>
 
         <section id="summary" style="display: none;">
-            <h2>Summary</h2>
+            <h2>📊 Summary Statistics</h2>
             <div id="summaryStats" class="stats-panel">
                 <!-- Summary statistics will be populated by JavaScript -->
             </div>
         </section>
 
         <section id="chartSection" style="display: none;">
-            <h2>Power Consumption Over Time</h2>
+            <h2>📈 Power Consumption Over Time</h2>
             <div id="chartContainer" class="chart-container">
                 <!-- Highcharts will render here -->
             </div>

@@ -123,14 +123,14 @@ Per plan.md structure:
 
 ### Implementation for User Story 3
 
-- [ ] T050 [US3] Add comparison view toggle control to frontend/index.html (button or checkbox)
-- [ ] T051 [US3] Implement weekday data aggregation function in frontend/js/utils.js (filter Monday-Friday records)
-- [ ] T052 [US3] Implement weekend data aggregation function in frontend/js/utils.js (filter Saturday-Sunday records)
-- [ ] T053 [US3] Extend chartManager in frontend/js/chartManager.js to support comparison mode (separate or overlaid series)
-- [ ] T054 [US3] Implement comparison view rendering in frontend/js/chartManager.js showing weekday vs weekend patterns
-- [ ] T055 [US3] Add comparison statistics panel to frontend/index.html showing peak wattage difference in 3-4pm window
-- [ ] T056 [US3] Calculate and display weekday vs weekend metrics in frontend/js/chartManager.js (max wattage, average during critical hours)
-- [ ] T057 [US3] Style comparison view controls and panels in frontend/css/main.css
+- [X] T050 [US3] Add comparison view toggle control to frontend/index.html (button or checkbox)
+- [X] T051 [US3] Implement weekday data aggregation function in frontend/js/utils.js (filter Monday-Friday records)
+- [X] T052 [US3] Implement weekend data aggregation function in frontend/js/utils.js (filter Saturday-Sunday records)
+- [X] T053 [US3] Extend chartManager in frontend/js/chartManager.js to support comparison mode (separate or overlaid series)
+- [X] T054 [US3] Implement comparison view rendering in frontend/js/chartManager.js showing weekday vs weekend patterns
+- [X] T055 [US3] Add comparison statistics panel to frontend/index.html showing peak wattage difference in 3-4pm window
+- [X] T056 [US3] Calculate and display weekday vs weekend metrics in frontend/js/chartManager.js (max wattage, average during critical hours)
+- [X] T057 [US3] Style comparison view controls and panels in frontend/css/main.css
 
 **Checkpoint**: All user stories 1-3 should now be independently functional - complete analytical tool for weekday/weekend comparison
 
@@ -177,7 +177,7 @@ Per plan.md structure:
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T075 [P] Create utility functions in frontend/js/utils.js (date formatting, validation helpers)
+- [X] T075 [P] Create utility functions in frontend/js/utils.js (date formatting, validation helpers)
 - [ ] T076 [P] Add docstrings to all Python functions in data-generator/src/ (Google style per plan.md)
 - [ ] T077 [P] Add JSDoc comments to frontend JavaScript modules in frontend/js/
 - [ ] T078 [P] Test website in Chrome, Firefox, and Edge latest versions (per SC-008)

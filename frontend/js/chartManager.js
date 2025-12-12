@@ -8,6 +8,7 @@
  */
 
 import { eventBus, EVENTS } from './core/eventBus.js';
+import { filterWeekdayData, filterWeekendData, calculatePeakWattage } from './utils.js';
 
 /**
  * Paul Tol's Bright colorblind-safe palette
@@ -31,6 +32,7 @@ export class ChartManager {
     this.chart = null;
     this.allData = null;
     this.currentData = null;
+    this.comparisonMode = false;
     this.setupEventListeners();
   }
 
@@ -52,6 +54,19 @@ export class ChartManager {
       this.renderChart();
       this.updateSummary();
     });
+    
+    // Listen for comparison mode toggle
+    eventBus.on(EVENTS.COMPARISON_ENABLED, () => {
+      this.comparisonMode = true;
+      this.renderChart();
+      this.updateComparisonStats();
+    });
+    
+    eventBus.on(EVENTS.COMPARISON_DISABLED, () => {
+      this.comparisonMode = false;
+      this.renderChart();
+      this.hideComparisonStats();
+    });
   }
 
   /**
@@ -66,22 +81,22 @@ export class ChartManager {
     document.getElementById('chartSection').style.display = 'block';
     document.getElementById('summary').style.display = 'block';
 
-    // Prepare data by room
-    const seriesData = this.prepareSeriesData(this.currentData);
-    
-    // Create or update chart
-    if (this.chart) {
-      // Update existing chart
-      this.chart.series.forEach((series, index) => {
-        if (seriesData[index]) {
-          series.setData(seriesData[index].data, false);
-        }
-      });
-      this.chart.redraw();
+    // Prepare data based on mode
+    let seriesData;
+    if (this.comparisonMode) {
+      seriesData = this.prepareComparisonSeriesData(this.currentData);
     } else {
-      // Create new chart
-      this.chart = Highcharts.chart('chartContainer', this.getChartConfig(seriesData));
+      seriesData = this.prepareSeriesData(this.currentData);
     }
+    
+    // Destroy and recreate chart to handle mode changes
+    if (this.chart) {
+      this.chart.destroy();
+      this.chart = null;
+    }
+    
+    // Create new chart
+    this.chart = Highcharts.chart('chartContainer', this.getChartConfig(seriesData));
 
     eventBus.emit(EVENTS.CHART_RENDERED, { seriesCount: seriesData.length });
   }
@@ -415,6 +430,207 @@ export class ChartManager {
   }
 
   /**
+   * Prepare comparison series data (weekday vs weekend).
+   * 
+   * @param {Array} data - Power reading data
+   * @returns {Array} Series configuration for comparison view
+   */
+  prepareComparisonSeriesData(data) {
+    const weekdayData = filterWeekdayData(data);
+    const weekendData = filterWeekendData(data);
+    
+    // Group by room
+    const weekdayByRoom = this.groupDataByRoom(weekdayData);
+    const weekendByRoom = this.groupDataByRoom(weekendData);
+    
+    const series = [];
+    let colorIndex = 0;
+    
+    // Get all unique rooms
+    const allRooms = new Set([
+      ...Object.keys(weekdayByRoom),
+      ...Object.keys(weekendByRoom)
+    ]);
+    
+    // Create series for each room (weekday + weekend)
+    Array.from(allRooms).sort().forEach(roomName => {
+      const baseColor = COLOR_PALETTE[colorIndex % COLOR_PALETTE.length];
+      
+      // Weekday series
+      if (weekdayByRoom[roomName]) {
+        series.push({
+          name: `${roomName} (Weekday)`,
+          data: weekdayByRoom[roomName],
+          color: baseColor,
+          dashStyle: 'Solid',
+          lineWidth: 2,
+          marker: { enabled: false }
+        });
+      }
+      
+      // Weekend series (lighter/dashed)
+      if (weekendByRoom[roomName]) {
+        series.push({
+          name: `${roomName} (Weekend)`,
+          data: weekendByRoom[roomName],
+          color: baseColor,
+          dashStyle: 'Dash',
+          lineWidth: 2,
+          opacity: 0.6,
+          marker: { enabled: false }
+        });
+      }
+      
+      colorIndex++;
+    });
+    
+    return series;
+  }
+
+  /**
+   * Group data by room for series preparation.
+   * 
+   * @param {Array} data - Power reading data
+   * @returns {Object} Data grouped by room name
+   */
+  groupDataByRoom(data) {
+    const roomData = {};
+    
+    data.forEach(row => {
+      if (!roomData[row.room_name]) {
+        roomData[row.room_name] = [];
+      }
+      
+      const timestamp = row.timestampObj ? row.timestampObj.getTime() : new Date(row.timestamp).getTime();
+      
+      roomData[row.room_name].push({
+        x: timestamp,
+        y: row.wattage,
+        amperage: row.amperage,
+        breaker_tripped: row.breaker_tripped === 'true' || row.breaker_tripped === true
+      });
+    });
+    
+    return roomData;
+  }
+
+  /**
+   * Update comparison statistics panel.
+   */
+  updateComparisonStats() {
+    if (!this.currentData) return;
+    
+    const weekdayData = filterWeekdayData(this.currentData);
+    const weekendData = filterWeekendData(this.currentData);
+    
+    // Calculate peak wattage in critical hours (3-4pm)
+    const weekdayPeaks = calculatePeakWattage(weekdayData, 15, 16);
+    const weekendPeaks = calculatePeakWattage(weekendData, 15, 16);
+    
+    // Show comparison section
+    document.getElementById('comparisonSection').style.display = 'block';
+    
+    // Update stats display
+    const statsEl = document.getElementById('comparisonStats');
+    if (statsEl) {
+      statsEl.style.display = 'block';
+      statsEl.innerHTML = this.renderComparisonStatsHTML(weekdayPeaks, weekendPeaks);
+    }
+  }
+
+  /**
+   * Hide comparison statistics panel.
+   */
+  hideComparisonStats() {
+    const statsEl = document.getElementById('comparisonStats');
+    if (statsEl) {
+      statsEl.style.display = 'none';
+    }
+  }
+
+  /**
+   * Render comparison statistics as HTML.
+   * 
+   * @param {Object} weekdayPeaks - Weekday peak statistics by room
+   * @param {Object} weekendPeaks - Weekend peak statistics by room
+   * @returns {string} HTML string
+   */
+  renderComparisonStatsHTML(weekdayPeaks, weekendPeaks) {
+    let html = '<div class="comparison-stats-panel">';
+    html += '<h3>3-4 PM Power Consumption Comparison</h3>';
+    
+    // Get all rooms
+    const allRooms = new Set([
+      ...Object.keys(weekdayPeaks),
+      ...Object.keys(weekendPeaks)
+    ]);
+    
+    if (allRooms.size === 0) {
+      html += '<p>No data available for 3-4 PM time window.</p>';
+    } else {
+      html += '<table class="comparison-table">';
+      html += '<thead><tr>';
+      html += '<th>Room</th>';
+      html += '<th>Weekday Peak</th>';
+      html += '<th>Weekend Peak</th>';
+      html += '<th>Difference</th>';
+      html += '<th>% Increase</th>';
+      html += '</tr></thead>';
+      html += '<tbody>';
+      
+      Array.from(allRooms).sort().forEach(room => {
+        const weekdayMax = weekdayPeaks[room]?.max || 0;
+        const weekendMax = weekendPeaks[room]?.max || 0;
+        const difference = weekdayMax - weekendMax;
+        const percentIncrease = weekendMax > 0 ? ((difference / weekendMax) * 100).toFixed(1) : 'N/A';
+        
+        // Highlight significant differences (>500W or >50% increase)
+        const isSignificant = difference > 500 || (weekendMax > 0 && (difference / weekendMax) > 0.5);
+        const rowClass = isSignificant ? 'highlight-row' : '';
+        
+        html += `<tr class="${rowClass}">`;
+        html += `<td><strong>${room}</strong></td>`;
+        html += `<td>${weekdayMax.toFixed(0)}W</td>`;
+        html += `<td>${weekendMax.toFixed(0)}W</td>`;
+        html += `<td style="color: ${difference > 0 ? '#ef4444' : '#22c55e'}">${difference > 0 ? '+' : ''}${difference.toFixed(0)}W</td>`;
+        html += `<td>${percentIncrease !== 'N/A' ? percentIncrease + '%' : 'N/A'}</td>`;
+        html += '</tr>';
+      });
+      
+      html += '</tbody></table>';
+      
+      html += '<div class="comparison-summary" style="margin-top: 1rem;">';
+      html += '<p><strong>Key Insights:</strong></p>';
+      html += '<ul>';
+      
+      // Find rooms with significant weekday spikes
+      const spikeRooms = Array.from(allRooms).filter(room => {
+        const weekdayMax = weekdayPeaks[room]?.max || 0;
+        const weekendMax = weekendPeaks[room]?.max || 0;
+        return (weekdayMax - weekendMax) > 500;
+      });
+      
+      if (spikeRooms.length > 0) {
+        html += `<li>Significant weekday afternoon spikes detected in: <strong>${spikeRooms.join(', ')}</strong></li>`;
+      }
+      
+      // Check for breaker capacity concerns
+      const overCapacity = Array.from(allRooms).filter(room => {
+        return (weekdayPeaks[room]?.max || 0) > 1800;
+      });
+      
+      if (overCapacity.length > 0) {
+        html += `<li style="color: #ef4444">⚠️ Breaker capacity exceeded in: <strong>${overCapacity.join(', ')}</strong></li>`;
+      }
+      
+      html += '</ul></div>';
+    }
+    
+    html += '</div>';
+    return html;
+  }
+
+  /**
    * Destroy chart instance.
    */
   destroy() {
@@ -424,3 +640,4 @@ export class ChartManager {
     }
   }
 }
+

@@ -71,9 +71,22 @@
         </section>
 
         <section id="comparisonSection" style="display: none;">
-            <h2>Weekday vs Weekend Comparison</h2>
+            <h2>📅 Weekday vs Weekend Comparison</h2>
             <div class="comparison-controls">
-                <!-- Comparison controls will be added in Phase 5 (User Story 3) -->
+                <div class="control-group">
+                    <label class="toggle-label">
+                        <input 
+                            type="checkbox" 
+                            id="comparisonToggle" 
+                            aria-label="Enable weekday vs weekend comparison"
+                        >
+                        <span>Enable Weekday vs Weekend Comparison</span>
+                    </label>
+                </div>
+                
+                <div id="comparisonStats" class="comparison-stats" style="display: none;">
+                    <!-- Comparison statistics will be populated by JavaScript -->
+                </div>
             </div>
         </section>
 

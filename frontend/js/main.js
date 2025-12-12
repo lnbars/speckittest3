@@ -43,6 +43,18 @@ function init() {
     });
   }
   
+  // Connect comparison toggle
+  const comparisonToggle = document.getElementById('comparisonToggle');
+  if (comparisonToggle) {
+    comparisonToggle.addEventListener('change', (event) => {
+      if (event.target.checked) {
+        eventBus.emit(EVENTS.COMPARISON_ENABLED);
+      } else {
+        eventBus.emit(EVENTS.COMPARISON_DISABLED);
+      }
+    });
+  }
+  
   console.log('✓ Application initialized');
   console.log('Ready to load CSV file');
 }

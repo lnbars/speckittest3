@@ -1,0 +1,34 @@
+# Using github spec kit from https://github.com/github/spec-kit
+
+/speckit.constitution Write clear modular code. Use Python and Flask for the backend and Highcharts for charts. Use best practices for Python and HTML / CSS / Javascript.
+
+
+/speckit.specify I am an electrician that is investigating why a breaker keeps blowing everyday. I am running diagnostics on how many watts are being used in each room in the house to try to track down the issue. Each room has one 120v 15 amp circuit. I would like to create a csv with timeseries data like time, persons room (Parents room, Sons room, daughters room, kitchen etc. ), wattage used and any other columns that make sense for the data type. There should be a record for every 10 minutes for two weeks of time. The data should show spikes around 3-4pm but only on weekdays. I want the data to show that the breakers blow when the kids get off school and start using a ton of electronics in their rooms. I would like to create test data that represents this specific scenario. I would then like to create a website to look at the time series data. Use best practices for the UI in regards to look and feel. It should look like a website a data analyst would want to use. There does not ned to be authentication or authorization as this will be a one-off tool to look at this specific data. I want to use the CSV test data from above as the source of the data.
+
+
+/speckit.clarify
+
+/speckit.plan
+
+/speckit.tasks
+
+/speckit.implement Phase 1
+
+/speckit.implement Phase 2
+
+/speckit.implement Phase 3
+
+/speckit.implement Phase 4
+
+/speckit.implement Phase 5
+
+/speckit.implement Phase 6
+
+/speckit.implement Phase 7
+
+/speckit.implement Phase 8
+
+
+
+
+
